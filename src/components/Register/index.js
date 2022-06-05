@@ -35,6 +35,15 @@ export const Register = () => {
     <div>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
+      <label htmlFor='name'>Nombre</label>
+        <input 
+          type='name' 
+          name='name' 
+          id='name' 
+          placeholder='Nombre'
+          onChange={handleInputChange}
+           />
+           
         <label htmlFor='email'>Email</label>
         <input 
           type='email' 
@@ -44,7 +53,7 @@ export const Register = () => {
           onChange={handleInputChange}
            />
 
-        <label htmlFor='password'>Email</label>
+        <label htmlFor='password'>Contraseña</label>
         <input 
           type='password' 
           name='password' 
