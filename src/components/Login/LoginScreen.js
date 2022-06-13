@@ -57,7 +57,7 @@ const handleSubmit = async(e) => {
       <button onSubmit={handleSubmit}>Login</button>
       <br/>
       <br/>
-      <Link to='/register'>
+      <Link to='auth/register'>
               Create new account
       </Link>
 

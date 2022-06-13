@@ -12,10 +12,10 @@ export const AppRouter = () => {
         
           <DashboardRoutes/>
       
-      } />
-      {/* <Route path='/login' element={ <LoginScreen /> } />
-      <Route path='/register' element={ <Register /> } /> */}
-      <Route path='*' element={
+      } 
+      />
+      
+      <Route path='/auth/*' element={
         <AuthRouter />
       }
       />

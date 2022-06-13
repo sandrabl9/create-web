@@ -70,7 +70,7 @@ export const Register = () => {
         <br />
 
 
-        <Link to='/login'>
+        <Link to='auth/login'>
               Already register!
       </Link>
     </form>

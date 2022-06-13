@@ -14,7 +14,7 @@ export const DashboardRoutes = () => {
   
   const handleLogout = async() => {
     await logout();
-    navigate('/login')
+    navigate('auth/login')
   }
  
  
@@ -24,7 +24,7 @@ export const DashboardRoutes = () => {
      {
        user 
           ? <button onClick={handleLogout}>Logout</button>
-          : <Link to='/login'>Iniciar sesión </Link>
+          : <Link to='auth/login'>Iniciar sesión </Link>
      }
  
      <Navbar />
