@@ -1,22 +1,24 @@
 import React from 'react';
 
 import { Routes, Route } from 'react-router-dom';
-import { Home } from '../components/Home';
-import { Login } from '../components/Login';
 // import { ProtectedRoute } from '../components/ProtectedRoute';
-
-import { Register } from '../components/Register';
+import { AuthRouter } from './AuthRouter';
+import { DashboardRoutes } from './DashboardRoutes';
 
 export const AppRouter = () => {
   return (
    <Routes>
-      <Route path='/' element={ 
+      <Route path='*' element={ 
         
-          <Home />
+          <DashboardRoutes/>
       
       } />
-      <Route path='/login' element={ <Login /> } />
-      <Route path='/register' element={ <Register /> } />
+      {/* <Route path='/login' element={ <LoginScreen /> } />
+      <Route path='/register' element={ <Register /> } /> */}
+      <Route path='*' element={
+        <AuthRouter />
+      }
+      />
    </Routes>
   )
 }

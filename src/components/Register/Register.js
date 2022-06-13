@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
+import { Title, Input } from './style';
 
 export const Register = () => {
     const [user, setUser] = useState(
@@ -33,10 +34,11 @@ export const Register = () => {
 
   return (
     <div>
+      <Title>Register</Title>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
-      <label htmlFor='name'>Nombre</label>
-        <input 
+      
+        <Input 
           type='name' 
           name='name' 
           id='name' 
@@ -44,8 +46,8 @@ export const Register = () => {
           onChange={handleInputChange}
            />
            
-        <label htmlFor='email'>Email</label>
-        <input 
+        
+        <Input 
           type='email' 
           name='email' 
           id='email' 
@@ -53,8 +55,8 @@ export const Register = () => {
           onChange={handleInputChange}
            />
 
-        <label htmlFor='password'>Contraseña</label>
-        <input 
+        
+        <Input 
           type='password' 
           name='password' 
           id='password' 
@@ -62,7 +64,15 @@ export const Register = () => {
           onChange={handleInputChange}
           />
   
-        <button onSubmit={handleSubmit}>Registrase</button>
+        <button onSubmit={handleSubmit}>Register</button>
+
+        <br />
+        <br />
+
+
+        <Link to='/login'>
+              Already register!
+      </Link>
     </form>
     </div>
   )

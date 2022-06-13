@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
+import { Input, Title } from './style';
 
-export const Login = () => {
+export const LoginScreen = () => {
   const [user, setUser] = useState(
     {
         email: '',
@@ -32,10 +33,11 @@ const handleSubmit = async(e) => {
 }
   return (
     <div>
+        <Title>Login</Title>
     {error && <p>{error}</p>}
     <form onSubmit={handleSubmit}>
-      <label htmlFor='email'>Email</label>
-      <input 
+      
+      <Input 
         type='email' 
         name='email' 
         id='email' 
@@ -43,8 +45,8 @@ const handleSubmit = async(e) => {
         onChange={handleInputChange}
          />
 
-      <label htmlFor='password'>Email</label>
-      <input 
+      
+      <Input
         type='password' 
         name='password' 
         id='password' 
@@ -53,11 +55,14 @@ const handleSubmit = async(e) => {
         />
 
       <button onSubmit={handleSubmit}>Login</button>
+      <br/>
+      <br/>
+      <Link to='/register'>
+              Create new account
+      </Link>
+
   </form>
   </div>
     
   )
 }
-
-
-
