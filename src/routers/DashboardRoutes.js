@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Routes, Route } from 'react-router';
 import { Link } from 'react-router-dom';
+import { Container, LogBar } from './DashboardRoutesStyle';
 import { Navbar } from '../components/ui/NavBar';
 import { useAuth } from '../context/authContext';
 import { Home } from '../components/Home/Home';
@@ -19,13 +20,16 @@ export const DashboardRoutes = () => {
  
  
    return (
-     <>
-     <div>Hola {user && user.email}</div>
-     {
-       user 
-          ? <button onClick={handleLogout}>Logout</button>
-          : <Link to='auth/login'>Iniciar sesión </Link>
-     }
+     
+     <Container>
+        <LogBar>
+            <span>Hola {user && user.email}</span>
+          {
+            user 
+                ? <button onClick={handleLogout}>Logout</button>
+                : <Link to='auth/login'>Iniciar sesión </Link>
+          }
+       </LogBar>
  
      <Navbar />
      <Routes>
@@ -33,8 +37,9 @@ export const DashboardRoutes = () => {
            <Route path='/collections' element={< Collections />} />
            <Route path='/about' element={< About />} />
       </Routes>
+      </Container>
      
-     </>
+     
      
    )
  }
