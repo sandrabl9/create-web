@@ -16,6 +16,7 @@ export const Collections = () => {
       }
 
       const responseData = await response.json();
+
       const loadedCollections = [];
 
       for (const key in responseData) {
@@ -23,16 +24,20 @@ export const Collections = () => {
           id: key,
           name: responseData[key].name,
           description: responseData[key].description,
+          img: responseData[key].img
           
         });
       }
+      
       setCollections(loadedCollections);
       setIsLoading(false);
     };
     ;
       fetchCollections().catch(error => {
       setIsLoading(false);
-      setHttpError(error.message);});
+      setHttpError(error.message);
+    });
+
   }, []);
 
   if (isLoading) {
@@ -55,9 +60,10 @@ export const Collections = () => {
     id: col.id,
     name: col.name,
     description: col.description,
+    img: col.img,
     
-
   }))
+  console.log('here')
 
 
   return <div>
@@ -67,6 +73,8 @@ export const Collections = () => {
       collectionsList.map( c => 
         <ol key={c.id}>
           {c.name}
+          <img src={c.img} alt='mobile' />
+          
         </ol>
       )
     }
