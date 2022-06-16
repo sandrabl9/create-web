@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../context/authContext';
 import { ErrorMssg, Input, Title } from './style';
+import { useAuth } from '../../context/authContext';
 
 export const LoginScreen = () => {
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
-  const { login } = useAuth();
+  const { login, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
@@ -27,13 +27,27 @@ export const LoginScreen = () => {
       setError('Email y/o contraseña incorrectos');
     }
   };
+
+  const handleResetPassword = async() => {
+    if (!user.email) {
+      setError('Por favor ingresa un email')
+    } 
+    try {
+      await resetPassword(user.email)
+      setError('Le hemos enviado un email')
+
+    } catch (err) {
+      setError('Este email no está registrado')
+
+    }
+  }
   return (
     <div>
       <Title>Iniciar sesión</Title>
       {error &&
 
          <ErrorMssg>
-         <p>{error}</p>
+            {error}
          </ErrorMssg>
       }
       <form onSubmit={handleSubmit}>
@@ -52,6 +66,14 @@ export const LoginScreen = () => {
           placeholder='contraseña'
           onChange={handleInputChange}
         />
+
+        <a 
+        href='#!'
+        onClick={handleResetPassword}
+        >
+          Recuperar contraseña
+        </a>
+        <br />
 
         <button onSubmit={handleSubmit}>Iniciar sesión</button>
         <br />
