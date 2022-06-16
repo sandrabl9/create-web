@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
-import { Input, Title } from './style';
+import { ErrorMssg, Input, Title } from './style';
 
 export const LoginScreen = () => {
   const [user, setUser] = useState({
@@ -23,14 +23,19 @@ export const LoginScreen = () => {
     try {
       await login(user.email, user.password);
       navigate('/');
-    } catch (error) {
-      setError('Email o contraseña incorrectos'); //a partir del código de error que nos viene de firebase
+    } catch (err) {
+      setError('Email y/o contraseña incorrectos');
     }
   };
   return (
     <div>
       <Title>Iniciar sesión</Title>
-      {error && <p>{error}</p>}
+      {error &&
+
+         <ErrorMssg>
+         <p>{error}</p>
+         </ErrorMssg>
+      }
       <form onSubmit={handleSubmit}>
         <Input
           type='email'
@@ -43,8 +48,8 @@ export const LoginScreen = () => {
         <Input
           type='password'
           name='password'
-          id='Contraseña'
-          placeholder='Password'
+          id='password'
+          placeholder='contraseña'
           onChange={handleInputChange}
         />
 

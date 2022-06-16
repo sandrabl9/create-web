@@ -24,7 +24,7 @@ export const Register = () => {
     try {
       await signup(user.email, user.password);
       navigate('/');
-    } catch (error) {
+    } catch (err) {
       setError('Email ya registrado, por favor use otro email');
     }
   };
@@ -65,7 +65,7 @@ export const Register = () => {
         <br />
         <br />
 
-        <Link to='/auth/login'>Ya eres usuario!</Link>
+        <Link to='/auth/login'>Ya tienes cuenta</Link>
       </form>
     </div>
   );

@@ -26,3 +26,14 @@ export const Input = styled.input`
     }
 
 `;
+
+export const ErrorMssg = styled.div`
+    background-color: #F08A8E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    height: 25px;
+    margin-bottom: 20px;
+
+`;
