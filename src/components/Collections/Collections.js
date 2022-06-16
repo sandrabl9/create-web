@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { CardCollection } from './CardCollection';
 
 export const Collections = () => {
   
@@ -9,7 +10,7 @@ export const Collections = () => {
   useEffect(() => {
     const fetchCollections = async () => {
       const response = await fetch(
-        "https://create-web-e8e99-default-rtdb.firebaseio.com/collections.json"
+        'https://create-web-e8e99-default-rtdb.firebaseio.com/collections.json'
       );
       if (!response.ok) {
         throw new Error('Something went wrong!');
@@ -35,14 +36,15 @@ export const Collections = () => {
     ;
       fetchCollections().catch(error => {
       setIsLoading(false);
-      setHttpError(error.message);
+      // setHttpError(error.message);
+      setHttpError('Error al cargar las colecciones')
     });
 
   }, []);
 
   if (isLoading) {
     return ( <section>
-      <p>Loading...</p>
+      <p>Cargando...</p>
     </section>
     );
   }
@@ -56,28 +58,18 @@ export const Collections = () => {
 
   }
 
-  const collectionsList = collections.map(col =>({
-    id: col.id,
-    name: col.name,
-    description: col.description,
-    img: col.img,
+  const collectionsList = collections.map(col => <CardCollection
+    key={col.id} 
+    id={col.id}
+    name={col.name} 
+    description={col.description} 
+    img={col.img}/>
+    );
     
-  }))
-  console.log('here')
-
-
   return <div>
     Collections 
 
-    {
-      collectionsList.map( c => 
-        <ol key={c.id}>
-          {c.name}
-          <img src={c.img} alt='mobile' />
-          
-        </ol>
-      )
-    }
+    {collectionsList}
 
   </div>;
 };

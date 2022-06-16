@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
-import { Title, Input } from "./style";
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
+import { Title, Input, ErrorMssg } from './style';
 
 export const Register = () => {
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
   const { signup } = useAuth();
   const navigate = useNavigate();
@@ -14,54 +15,57 @@ export const Register = () => {
 
   const handleInputChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
+    setError('')
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     try {
       await signup(user.email, user.password);
-      navigate("/");
+      navigate('/');
     } catch (error) {
-      setError(error.message); //error.code codigo
+      setError('Email ya registrado, por favor use otro email');
     }
   };
 
   return (
     <div>
-      <Title>Register</Title>
-      {error && <p>{error}</p>}
+      <Title>Registro</Title>
+      
+      {error && <ErrorMssg><p>{error}</p></ErrorMssg>}
+      
       <form onSubmit={handleSubmit}>
         <Input
-          type="name"
-          name="name"
-          id="name"
-          placeholder="Nombre"
+          type='name'
+          name='name'
+          id='name'
+          placeholder='Nombre'
           onChange={handleInputChange}
         />
 
         <Input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="email@email.com"
+          type='email'
+          name='email'
+          id='email'
+          placeholder='email@email.com'
           onChange={handleInputChange}
         />
 
         <Input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
+          type='password'
+          name='password'
+          id='password'
+          placeholder='Contraseña'
           onChange={handleInputChange}
         />
 
-        <button onSubmit={handleSubmit}>Register</button>
+        <button onSubmit={handleSubmit}>Registro</button>
 
         <br />
         <br />
 
-        <Link to="/auth/login">Already register!</Link>
+        <Link to='/auth/login'>Ya eres usuario!</Link>
       </form>
     </div>
   );
