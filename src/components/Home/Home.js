@@ -1,9 +1,14 @@
 import React from "react";
+import { Search } from "../ui/Search";
 
 export const Home = () => {
   return (
     <div>
-      <footer> Enlaces y redes sociales </footer>
+      <Search />
+      <br />
+      <br />
+
+      <footer> Footer:Enlaces y redes sociales </footer>
     </div>
   );
 };

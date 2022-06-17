@@ -74,6 +74,7 @@ export const LoginScreen = () => {
           Recuperar contraseña
         </a>
         <br />
+        <br />
 
         <button onSubmit={handleSubmit}>Iniciar sesión</button>
         <br />

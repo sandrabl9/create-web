@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { CardCollection } from './CardCollection';
+import React, { useState, useEffect } from 'react'
+import { CardCollection } from './CardCollection'
 
 export const Collections = () => {
   
-  const [collections,setCollections] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
+  const [collections,setCollections] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [httpError, setHttpError] = useState()
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -13,12 +13,12 @@ export const Collections = () => {
         'https://create-web-e8e99-default-rtdb.firebaseio.com/collections.json'
       );
       if (!response.ok) {
-        throw new Error('Something went wrong!');
+        throw new Error('Something went wrong!')
       }
 
-      const responseData = await response.json();
+      const responseData = await response.json()
 
-      const loadedCollections = [];
+      const loadedCollections = []
 
       for (const key in responseData) {
         loadedCollections.push({
@@ -27,26 +27,26 @@ export const Collections = () => {
           description: responseData[key].description,
           img: responseData[key].img
           
-        });
+        })
       }
       
-      setCollections(loadedCollections);
-      setIsLoading(false);
-    };
-    ;
+      setCollections(loadedCollections)
+      setIsLoading(false)
+    }
+    
       fetchCollections().catch(error => {
       setIsLoading(false);
       // setHttpError(error.message);
       setHttpError('Error al cargar las colecciones')
-    });
-
-  }, []);
+    })
+   
+  }, [])
 
   if (isLoading) {
     return ( <section>
       <p>Cargando...</p>
     </section>
-    );
+    )
   }
 
   if (httpError) {
@@ -71,5 +71,5 @@ export const Collections = () => {
 
     {collectionsList}
 
-  </div>;
-};
+  </div>
+}
