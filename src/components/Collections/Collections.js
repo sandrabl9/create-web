@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CardCollection } from './CardCollection'
+import { Wrapper } from './CollectionsStyle'
 
 export const Collections = () => {
   
@@ -66,10 +67,13 @@ export const Collections = () => {
     img={col.img}/>
     );
     
-  return <div>
-    Collections 
+  return (
+  <Wrapper>
+     
 
     {collectionsList}
 
-  </div>
+  </Wrapper>
+  
+  )
 }
