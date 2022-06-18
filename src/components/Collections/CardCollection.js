@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container, Image, List } from './CardCollectionStyle'
+import { Container, Image, List, Text } from './CardCollectionStyle'
 import { Wrapper } from './CollectionsStyle'
 
 
-export const CardCollection = ({ name, description, img }) => {
+export const CardCollection = ({ name, description, img, date }) => {
 
 
 
@@ -15,9 +15,12 @@ export const CardCollection = ({ name, description, img }) => {
         <Image>
           <img src={img} alt={`collection${name}`}/>
         </Image>
-        <h3>{name}</h3>
-        <div>{description}</div>
-        
+        <Text>
+          <h3>{name}</h3>
+          <span>{date}</span>
+          <p>{description}</p>
+          <button>Descubrir</button>
+        </Text>  
       </Container>
       </Wrapper>
     </List>

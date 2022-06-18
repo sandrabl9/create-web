@@ -14,7 +14,7 @@ export const Collections = () => {
         'https://create-web-e8e99-default-rtdb.firebaseio.com/collections.json'
       );
       if (!response.ok) {
-        throw new Error('Something went wrong!')
+        throw new Error('Error inesperado!')
       }
 
       const responseData = await response.json()
@@ -26,7 +26,8 @@ export const Collections = () => {
           id: key,
           name: responseData[key].name,
           description: responseData[key].description,
-          img: responseData[key].img
+          img: responseData[key].img,
+          date: responseData[key].date
           
         })
       }
@@ -64,7 +65,9 @@ export const Collections = () => {
     id={col.id}
     name={col.name} 
     description={col.description} 
-    img={col.img}/>
+    img={col.img}
+    date={col.date}
+    />
     );
     
   return (
