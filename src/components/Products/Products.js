@@ -7,7 +7,7 @@ export const Products = () => {
   const [httpError, setHttpError] = useState()
 
   useEffect(() => {
-    const fetchCollections = async () => {
+    const fetchProducts = async () => {
       const response = await fetch(
         'https://create-web-e8e99-default-rtdb.firebaseio.com/products.json'
       );
@@ -21,7 +21,7 @@ export const Products = () => {
 
       for (const key in responseData) {
         loadedProducts.push({
-          id: key,
+          id: responseData[key].id,
           name: responseData[key].name,
           description: responseData[key].description,
           imgUrl: responseData[key].imgUrl,
@@ -34,10 +34,10 @@ export const Products = () => {
       setIsLoading(false)
     }
     
-      fetchCollections().catch(error => {
+      fetchProducts().catch(error => {
       setIsLoading(false);
       // setHttpError(error.message);
-      setHttpError('Error al cargar las colecciones')
+      setHttpError('Error al cargar las productos')
     })
    
   }, [])
@@ -58,15 +58,16 @@ export const Products = () => {
 
   }
 
-  const productList = products.map(col => <ProductCard
-    key={col.id} 
-    id={col.id}
-    name={col.name} 
-    description={col.description} 
-    imgUrl={col.imgUrl}
-    price={col.price}
+  const productList = products.map(prod => <ProductCard
+    key={prod.id} 
+    id={prod.id}
+    name={prod.name} 
+    description={prod.description} 
+    imgUrl={prod.imgUrl}
+    price={prod.price}
     />
     );
+
   return (
     <div>{productList}</div>
   )

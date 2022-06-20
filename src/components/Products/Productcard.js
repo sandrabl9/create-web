@@ -1,7 +1,5 @@
 import React from 'react'
-import { Container, Image, List, Text } from '../Collections/CardCollectionStyle'
-import { Wrapper } from '../Collections/CollectionsStyle'
-
+import { Container, Image, List, Text } from './ProductCardStyle'
 
 export const ProductCard = ({ name, description, imgUrl, price }) => {
 
@@ -10,21 +8,21 @@ export const ProductCard = ({ name, description, imgUrl, price }) => {
   return (
     
       <List>
-        <Wrapper>
       <Container>
         <Image>
           <img src={imgUrl} alt={`collection${name}`}/>
         </Image>
         <Text>
           <h3>{name}</h3>
-          <span>{price}</span>
-          <p>{description}</p>
+          <span>{price} €</span>
+          {/* <p>{description}</p> */}
           <button>Añadir al carrito</button>
+          <br />
+          <button>Ver</button>
         </Text>  
       </Container>
-      </Wrapper>
     </List>
-    
+
     
   )
 }
