@@ -15,7 +15,7 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 margin: 20px 0;
-width: 150px ;
+width: 200px ;
 `;
 
 export const Image = styled.div`

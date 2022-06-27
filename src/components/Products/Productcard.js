@@ -10,7 +10,7 @@ export const ProductCard = ({ name, description, imgUrl, price }) => {
       <List>
       <Container>
         <Image>
-          <img src={imgUrl} alt={`collection${name}`}/>
+          <img src={imgUrl} alt={`product${name}`}/>
         </Image>
         <Text>
           <h3>{name}</h3>

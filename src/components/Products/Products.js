@@ -5,6 +5,7 @@ export const Products = () => {
   const [products,setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [httpError, setHttpError] = useState()
+  const [currentPage, setCurrentePage] = useState(0)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -58,7 +59,9 @@ export const Products = () => {
 
   }
 
-  const productList = products.map(prod => <ProductCard
+  const productsSlice = products.slice(currentPage, currentPage + 3)
+
+  const productList = productsSlice.map(prod => <ProductCard
     key={prod.id} 
     id={prod.id}
     name={prod.name} 
@@ -66,9 +69,24 @@ export const Products = () => {
     imgUrl={prod.imgUrl}
     price={prod.price}
     />
-    );
+  );
 
+  const nextPage = () => {
+    setCurrentePage(currentPage + 3)
+  }
+
+  const prevPage = () => {
+    if(currentPage > 0)
+    setCurrentePage(currentPage - 3)
+  }
+
+    
   return (
+    <>
     <div>{productList}</div>
+    <button onClick={ nextPage }>Siguientes</button>
+    <button onClick={ prevPage }>Anteriores</button>
+    </>
+    
   )
 }
